@@ -14,7 +14,7 @@
 
      import Carousel from "../../components/carousel/carousel.vue"; 
 
-2.使用：list传参
+2.使用：
 
      <Carousel :sliders="list" :duration="2000" :initial="0" :autoplay="true" /> 
 
