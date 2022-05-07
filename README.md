@@ -42,6 +42,8 @@
 
     <Waterfalls :list="list" /> 
 
+3.示例：
+## 瀑布流:
 
 ![](https://s1.ax1x.com/2022/05/07/OQeZ9K.md.png)
 
