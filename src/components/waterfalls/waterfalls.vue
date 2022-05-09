@@ -76,7 +76,7 @@ export default defineComponent({
     //鼠标移出
     const onMouseout = (item) => {
       index.value = item.index;
-      item.visible = false;
+      item.visible = false
     };
     //收藏
     const collection = (item) => {

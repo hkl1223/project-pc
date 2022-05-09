@@ -12,7 +12,6 @@ import carousel3 from "../../assets/carouselImg/3.jpg";
 import carousel4 from "../../assets/carouselImg/4.jpg";
 import carousel5 from "../../assets/carouselImg/5.jpg";
 import Carousel from "../../components/carousel/carousel.vue";
-import Waterfalls from "../../components/waterfalls/waterfalls.vue";
 
 const list = [
   {
@@ -33,7 +32,7 @@ const list = [
 ];
 export default defineComponent({
   name: "carousel",
-  components: { Carousel, Waterfalls },
+  components: { Carousel },
   setup() {
     return { list };
   },

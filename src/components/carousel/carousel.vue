@@ -166,13 +166,13 @@ export default defineComponent({
     });
 
     //左右切换
-    let change = (dir) => {
-      if (dir === "right") {
+    let change = (direction) => {
+      if (direction === "right") {
         state.initial++;
         state.initial >= state.sliders.length ? (state.initial = 0) : null;
         return;
       }
-      if (dir == "left") {
+      if (direction == "left") {
         state.initial--;
         state.initial < 0 ? (state.initial = state.sliders.length - 1) : null;
         return;
