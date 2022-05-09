@@ -12,7 +12,7 @@
         <div class="mark"></div>
       </div>
     </div>
-    <div class="iconBtn">
+    <div class="iconBtn" v-if="state.sliders">
       <div @click="change('left')"><i class="iconfont icon-left"></i></div>
       <div @click="change('right')"><i class="iconfont icon-right"></i></div>
     </div>
@@ -61,10 +61,6 @@ export default defineComponent({
           id: parseInt(sliders[sliders.length - 1].id) + 1,
         });
       });
-    }
-    //如果只有一项
-    if (diff == -4) {
-      //todo
     }
     //处理每一项的样式
     const handleStyle = (initial, sliders) => {
