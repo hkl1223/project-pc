@@ -1,5 +1,18 @@
 <template>
   <div class="waterfalls">
+    <div class="container">
+      <div class="waterfalls-title">同步剧场</div>
+      <div class="pagination">
+        <el-pagination
+          @current-change="currentChange"
+          :current-page="page"
+          :page-size="size"
+          layout="prev, pager, next"
+          :total="total"
+        >
+        </el-pagination>
+      </div>
+    </div>
     <div class="WaterfallsList">
       <div
         v-for="item in dataList.list"
@@ -21,7 +34,10 @@
           </div>
           <div class="name">{{ item.name }}</div>
           <div class="labelCt">
-            <div v-for="label in dataList.list[index].label" :key="label.index">
+            <div
+              v-for="label in dataList.list[item.index].label"
+              :key="label.index"
+            >
               <div class="label">{{ label.name }}</div>
             </div>
           </div>
@@ -52,6 +68,7 @@
 import { onMounted, reactive, ref, defineComponent } from "vue";
 export default defineComponent({
   name: "waterfalls",
+  components: {},
   props: {
     //数据
     list: {
@@ -62,20 +79,20 @@ export default defineComponent({
   },
 
   setup(props) {
+    const page = ref(1); //第几页
+    const size = ref(6); //一页多少条
+    const total = ref(0); //
+    const waterfallsData = ref([]); //
     const dataList = reactive({
-      list: props.list,
+      list: waterfallsData,
     });
-
-    const index = ref(0);
 
     //鼠标移入
     const onMouseOver = (item) => {
-      index.value = item.index;
       item.visible = true;
     };
     //鼠标移出
     const onMouseout = (item) => {
-      index.value = item.index;
       item.visible = false;
     };
     //收藏
@@ -86,8 +103,25 @@ export default defineComponent({
     const cancelCollec = (item) => {
       item.collec = false;
     };
+
+    const getData = () => {
+      waterfallsData.value = props.list.slice(
+        (page.value - 1) * size.value,
+        page.value * size.value
+      );
+      total.value = props.list.length;
+    };
+
+    const currentChange = (val) => {
+      console.log("翻页，当前为第几页", val);
+      page.value = val;
+      getData();
+    };
+
     onMounted(() => {
-      dataList.list.map((item, index) => {
+      getData();
+      props.list.map((item, index) => {
+        console.log(item, index);
         return (
           (item.index = index), (item.visible = false), (item.collec = false)
         );
@@ -95,11 +129,14 @@ export default defineComponent({
     });
     return {
       dataList,
-      index,
+      page,
+      size,
+      total,
       collection,
       cancelCollec,
       onMouseOver,
       onMouseout,
+      currentChange,
     };
   },
 });
@@ -124,26 +161,33 @@ export default defineComponent({
   }
 };
 .waterfalls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  background: @white;
+  .container {
+    display: block;
+    .waterfalls-title {
+      font-size: 30px;
+      margin-left: 50px;
+    }
+    .pagination {
+      display: flex;
+      justify-content: flex-end;
+      width: 80%;
+    }
+  }
   .WaterfallsList {
+    margin-left: 50px;
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
     .item {
-      margin: 20px 10px;
-      height: 300px;
-      width: 160px;
+      margin: 20px 16px;
+      height: 320px;
+      width: 200px;
     }
     .listCt {
       position: relative;
       > img {
         border-radius: 3px;
         height: 250px;
-        width: 160px;
+        width: 200px;
       }
       .vip {
         position: absolute;
@@ -179,8 +223,8 @@ export default defineComponent({
     }
 
     .visibleShow {
-      height: 300px;
-      width: 160px;
+      height: 320px;
+      width: 200px;
       background: @white;
       border-radius: 3px;
       box-shadow: 0 4px 8px rgb(40 40 40 / 20%);
@@ -191,7 +235,7 @@ export default defineComponent({
       .smallPic {
         > img {
           border-radius: 3px 3px 0px 0px;
-          width: 160px;
+          width: 200px;
           height: 150px;
         }
       }

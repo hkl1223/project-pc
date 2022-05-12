@@ -10,6 +10,25 @@
       >
         <img :src="item.imgUrl" alt="" />
         <div class="mark"></div>
+        <div class="container">
+          <div class="typeName">{{ item.typeName }}</div>
+          <div class="des">{{ item.des }}</div>
+          <div class="desBtn">
+            <div class="desBtnText">查看详情</div>
+            <div class="heart">
+              <i
+                @click="collection(item)"
+                v-if="!item.collec"
+                class="iconfont icon-heart"
+              ></i>
+              <i
+                @click="cancelCollec(item)"
+                v-if="item.collec"
+                class="iconfont icon-aixin"
+              ></i>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="iconBtn" v-if="state.sliders">
@@ -96,19 +115,19 @@ export default defineComponent({
             break;
           case temp1:
             zIndex = 1;
-            transform = `translate(-195%, -50%) scale(0.7)`;
+            transform = `translate(-195%, -50%) scale(0.6) rotate(-10deg)`;
             break;
           case temp2:
             zIndex = 2;
-            transform = `translate(-130%, -50%) scale(0.85)`;
+            transform = `translate(-130%, -50%) scale(0.8) rotate(-5deg)`;
             break;
           case temp4:
             zIndex = 2;
-            transform = `translate(30%, -50%) scale(0.85)`;
+            transform = `translate(30%, -50%) scale(0.8) rotate(5deg)`;
             break;
           case temp5:
             zIndex = 1;
-            transform = `translate(95%, -50%) scale(0.7)`;
+            transform = `translate(95%, -50%) scale(0.6) rotate(10deg)`;
             break;
         }
         item.sty = {
@@ -179,11 +198,22 @@ export default defineComponent({
       state.initial = item.index;
     };
 
+    //收藏
+    const collection = (item) => {
+      item.collec = true;
+    };
+    //取消收藏
+    const cancelCollec = (item) => {
+      item.collec = false;
+    };
+
     return {
       state,
       root,
       change,
       chooseItem,
+      collection,
+      cancelCollec,
     };
   },
 });
@@ -207,11 +237,10 @@ export default defineComponent({
       z-index: 0;
       transform: translate(-50%, -50%);
       box-sizing: border-box;
-      width: 25%;
-      height: 100%;
-      border: 3px solid #000;
-      overflow: hidden;
+      width: 300px;
+      height: 450px;
       transition: 0.5s;
+      border-radius: 5px;
       img {
         display: block;
         width: 100%;
@@ -226,39 +255,71 @@ export default defineComponent({
         background: rgba(0, 0, 0, 0.75);
         transition: 0.3s;
       }
-      .detail {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        box-sizing: border-box;
-        padding: 10px;
-        widows: 100%;
-        height: 40%;
-        background: rgba(0, 0, 0, 0.75);
-        background: -webkit-gradient(
-          top,
-          rgba(0, 0, 0, 0.35),
-          rgba(0, 0, 0, 0.75)
-        );
-        transform: translateY(100%);
-        transition: 0.3s;
-        span {
-          display: block;
-          line-height: 2;
-          font-size: 12px;
-          color: #fff;
+      .container {
+        animation: post-list-row 0.3s;
+        margin-top: -70px;
+        display: none;
+        text-align: center;
+        .typeName {
+          color: #f1c740;
+          letter-spacing: 7.5px;
+          font-style: oblique;
+          font-family: SimHei;
+          font-weight: 700;
         }
+        .des {
+          color: #fff;
+          margin-top: 5px;
+          font-family: SimHei;
+          font-size: 16px;
+          font-weight: 700;
+        }
+        .desBtn {
+          cursor: pointer;
+          position: absolute;
+          left: 23%;
+          display: flex;
+          margin-top: 15px;
+          .desBtnText {
+            height: 30px;
+            width: 130px;
+            color: #000;
+            line-height: 30px;
+            background: linear-gradient(to right, #d6b058, #fdb852);
+            border-radius: 10px 10px 100px 10px;
+            z-index: 99;
+          }
+          .heart {
+            height: 30px;
+            width: 60px;
+            background: #000;
+            border-radius: 5px;
+            margin-left: -20px;
+            .icon-heart {
+              margin-left: 10px;
+              color: #fff;
+              line-height: 30px;
+            }
+            .icon-aixin {
+              margin-left: 10px;
+              line-height: 30px;
+              color: #d81e06;
+            }
+          }
+        }
+      }
+      &.active .container {
+        display: block;
       }
       &.active .mark,
       &:hover .mark {
         background: rgba(0, 0, 0, 0);
       }
-      &.active:hover .detail {
-        transform: translateY(0);
-      }
     }
   }
   .iconBtn {
+    position: relative;
+    top: 50%;
     z-index: 10;
     display: flex;
     align-items: center;
@@ -278,6 +339,19 @@ export default defineComponent({
         font-size: 20px;
       }
     }
+  }
+}
+
+@keyframes post-list-row {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(40px);
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0) scale(0.9);
   }
 }
 </style>
