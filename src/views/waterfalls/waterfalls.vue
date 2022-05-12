@@ -75,7 +75,7 @@ const list = [
     introduction: "相扑美少女开启逆袭剧本",
     bigPic: carousel3,
     smallPic: green,
-    vip: false,
+    vip: true,
     description:
       "剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介",
     label: [
@@ -147,7 +147,7 @@ const list = [
     introduction: "相扑美少女开启逆袭剧本",
     bigPic: carousel5,
     smallPic: green,
-    vip: false,
+    vip: true,
     description:
       "剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介",
     label: [
@@ -171,7 +171,7 @@ const list = [
     introduction: "相扑美少女开启逆袭剧本",
     bigPic: carousel5,
     smallPic: green,
-    vip: false,
+    vip: true,
     description:
       "剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介",
     label: [
@@ -195,7 +195,7 @@ const list = [
     introduction: "相扑美少女开启逆袭剧本",
     bigPic: carousel5,
     smallPic: green,
-    vip: false,
+    vip: true,
     description:
       "剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介",
     label: [
@@ -210,6 +210,54 @@ const list = [
       },
       {
         name: "剧情",
+      },
+    ],
+  },
+  {
+    name: "电视剧名111",
+    series: "18",
+    introduction: "相扑美少女开启逆袭剧本",
+    bigPic: carousel5,
+    smallPic: green,
+    vip: true,
+    description:
+      "剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介剧情简介",
+    label: [
+      {
+        name: "2022",
+      },
+      {
+        name: "古装",
+      },
+      {
+        name: "爱情",
+      },
+      {
+        name: "剧情",
+      },
+    ],
+  },
+  {
+    name: "重生之门",
+    series: "18",
+    introduction: "张译、王俊凯领衔主演的盗窃题材悬疑剧",
+    bigPic: carousel5,
+    smallPic: green,
+    vip: true,
+    description:
+      "该剧讲述了刑侦队长罗坚在调查古画失窃案件的过程中结识了天才大学生庄文杰，两人联手屡破奇案的故事。",
+    label: [
+      {
+        name: "2022",
+      },
+      {
+        name: "悬疑",
+      },
+      {
+        name: "张译",
+      },
+      {
+        name: "王俊凯",
       },
     ],
   },
@@ -228,10 +276,10 @@ export default defineComponent({
 .waterfallsCt {
   display: flex;
   .waterfalls {
-    width: 70%;
+    width: 65%;
   }
   .rank {
-    width: 30%;
+    width: 35%;
     margin-right: 50px;
   }
 }

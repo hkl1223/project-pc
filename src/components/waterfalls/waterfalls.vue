@@ -34,10 +34,7 @@
           </div>
           <div class="name">{{ item.name }}</div>
           <div class="labelCt">
-            <div
-              v-for="label in dataList.list[item.index].label"
-              :key="label.index"
-            >
+            <div v-for="label in item.label" :key="label.index">
               <div class="label">{{ label.name }}</div>
             </div>
           </div>
@@ -80,9 +77,9 @@ export default defineComponent({
 
   setup(props) {
     const page = ref(1); //第几页
-    const size = ref(6); //一页多少条
-    const total = ref(0); //
-    const waterfallsData = ref([]); //
+    const size = ref(8); //一页多少条
+    const total = ref(0); //总数
+    const waterfallsData = ref([]); //数据
     const dataList = reactive({
       list: waterfallsData,
     });
@@ -103,7 +100,7 @@ export default defineComponent({
     const cancelCollec = (item) => {
       item.collec = false;
     };
-
+    //处理数据
     const getData = () => {
       waterfallsData.value = props.list.slice(
         (page.value - 1) * size.value,
@@ -111,21 +108,22 @@ export default defineComponent({
       );
       total.value = props.list.length;
     };
-
+    //翻页
     const currentChange = (val) => {
       console.log("翻页，当前为第几页", val);
       page.value = val;
       getData();
     };
 
+    const handleData = () => {
+      props.list.map((item, index) => {
+        return (item.visible = false), (item.collec = false);
+      });
+    };
+
     onMounted(() => {
       getData();
-      props.list.map((item, index) => {
-        console.log(item, index);
-        return (
-          (item.index = index), (item.visible = false), (item.collec = false)
-        );
-      });
+      handleData();
     });
     return {
       dataList,
@@ -178,7 +176,7 @@ export default defineComponent({
     display: flex;
     flex-wrap: wrap;
     .item {
-      margin: 20px 16px;
+      margin: 20px;
       height: 320px;
       width: 200px;
     }
@@ -241,8 +239,8 @@ export default defineComponent({
       }
       .name {
         @name();
-        margin-top: 0;
-        padding: 0 5px;
+        margin-top: 5px;
+        padding: 0 10px;
       }
       .labelCt {
         cursor: pointer;
@@ -256,7 +254,7 @@ export default defineComponent({
           background: #eee;
           border-radius: 10px;
           text-align: center;
-          width: 30px;
+          width: 40px;
           padding: 0 2px;
           > .label {
             color: #333;
@@ -265,7 +263,7 @@ export default defineComponent({
         }
       }
       .description {
-        margin-top: 10px;
+        margin-top: 12px;
         padding: 0 5px;
         font-size: 13px;
         color: #999;
@@ -276,7 +274,7 @@ export default defineComponent({
         -webkit-box-orient: vertical;
       }
       .btnCt {
-        margin: 10px 10px;
+        margin: 12px;
         display: flex;
         align-items: center;
         .watch {
@@ -301,7 +299,7 @@ export default defineComponent({
           color: @red;
         }
         .down {
-          margin-left: 10px;
+          margin-left: 20px;
           cursor: pointer;
           :hover {
             color: @red;

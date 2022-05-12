@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, onMounted } from "vue";
+import { defineComponent, reactive, onMounted, ref } from "vue";
 
 export default defineComponent({
   props: {
@@ -38,15 +38,20 @@ export default defineComponent({
     },
   },
   setup(props) {
+    const rankList = ref([]);
     const dataList = reactive({
-      list: props.list,
+      list: rankList,
     });
     onMounted(() => {
-      dataList.list.map((item, index) => {
+      rankList.value = props.list.slice(0, 8);
+      props.list.map((item, index) => {
         return (item.order = index + 1);
       });
     });
-    return { dataList };
+    return {
+      dataList,
+      rankList,
+    };
   },
 });
 </script>
