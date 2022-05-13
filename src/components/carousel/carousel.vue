@@ -30,10 +30,10 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="iconBtn" v-if="state.sliders">
-      <div @click="change('left')"><i class="iconfont icon-left"></i></div>
-      <div @click="change('right')"><i class="iconfont icon-right"></i></div>
+      <div class="iconBtn" v-if="state.sliders">
+        <div @click="change('left')"><i class="iconfont icon-left"></i></div>
+        <div @click="change('right')"><i class="iconfont icon-right"></i></div>
+      </div>
     </div>
   </div>
 </template>
@@ -228,7 +228,7 @@ export default defineComponent({
   height: 80%;
   .wrapper {
     position: relative;
-    box-sizing: border-box;
+    width: 100%;
     height: 100%;
     .slide {
       position: absolute;
@@ -236,17 +236,17 @@ export default defineComponent({
       left: 50%;
       z-index: 0;
       transform: translate(-50%, -50%);
-      box-sizing: border-box;
       width: 300px;
       height: 450px;
       transition: 0.5s;
-      border-radius: 5px;
       img {
         display: block;
         width: 100%;
         height: 100%;
+        border-radius: 5px;
       }
       .mark {
+        border-radius: 5px;
         position: absolute;
         top: 0;
         left: 0;
@@ -324,7 +324,6 @@ export default defineComponent({
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: -30%;
     > div {
       z-index: 11;
       cursor: pointer;
