@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Carousel :sliders="list" :duration="2000" :initial="0" :autoplay="false" />
+    <Carousel :sliders="list" :duration="2000" :initial="0" :autoplay="true" />
   </div>
 </template>
 
