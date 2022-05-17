@@ -327,12 +327,12 @@ export default defineComponent({
     > div {
       z-index: 11;
       cursor: pointer;
-      height: 30px;
-      width: 30px;
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
       background: rgba(204, 204, 204, 0.5);
       border-radius: 50%;
       text-align: center;
-      line-height: 30px;
       > i {
         color: #fff;
         font-size: 20px;
@@ -350,7 +350,7 @@ export default defineComponent({
   100% {
     opacity: 1;
     -webkit-transform: translateY(0);
-    transform: translateY(0) scale(0.9);
+    transform: translateY(0) scale(1);
   }
 }
 </style>
