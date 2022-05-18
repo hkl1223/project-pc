@@ -220,16 +220,13 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .banner-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
+  height: 500px;
+  width: 90%;
+  margin: 100px auto;
   .wrapper {
-    position: relative;
     width: 100%;
     height: 100%;
+    position: relative;
     .slide {
       position: absolute;
       top: 50%;

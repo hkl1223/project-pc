@@ -49,7 +49,10 @@ export default defineComponent({
   name: "carousel",
   components: { Carousel },
   setup() {
-    return { list };
+    const show = () => {
+      console.log("carousel");
+    };
+    return { list, show };
   },
 });
 </script>

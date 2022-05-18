@@ -267,7 +267,10 @@ export default defineComponent({
   components: { Waterfalls, Rank },
 
   setup() {
-    return { list };
+    const show = () => {
+      console.log("carousel");
+    };
+    return { list, show };
   },
 });
 </script>
