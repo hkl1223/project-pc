@@ -89,6 +89,7 @@ export default defineComponent({
         checkRight.value.sort(sortIndex);
         data.leftItem.push(checkRight.value);
         //todo
+        // https://github.com/cxz520299/vue3-typescript/blob/main/src/views/shuttle/shuttle.vue
         console.log(data.leftItem);
       }
       checkLeft.value = [];
